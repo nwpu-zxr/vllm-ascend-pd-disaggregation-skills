@@ -28,6 +28,12 @@ Follow [workflow coordination](../skills/pd-disaggregation-serving/references/wo
 
 The coordination reference includes manual review scenarios for overlapping entrypoints, reused services, partial failure, uncertain launches, routing loops and shared acceptance evidence. Package checks validate distribution and links; they do not constitute a live MindIE deployment test.
 
+## Reuse across design and diagnosis
+
+These skills remain PD methodology entrypoints, with optional specialist execution. The bundled [reuse contract](../skills/pd-disaggregation-design/references/skill-reuse.md) defines `auto`, `prefer-integrated` and `standalone` preferences, capability discovery, applicability checks and evidence returned to the PD conclusion. Candidate names are navigation examples, not required installations or guaranteed cross-version integrations.
+
+Review both paths: a matching specialist receives the existing case/build/state identities and returns scoped evidence; an absent or incompatible optional specialist falls back to the package's own methods. Check that a framework-specific cache recipe is not applied as a universal vLLM rule, and that missing hardware is reported as unexecuted runtime coverage rather than a successful fallback. Catalogue metadata must not turn optional reuse into a hard dependency.
+
 ## Suggested summaries
 
 | Skill | English | Chinese |

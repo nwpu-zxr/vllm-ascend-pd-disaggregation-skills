@@ -1,12 +1,14 @@
 ---
 name: pd-disaggregation-accuracy-debug
-description: Diagnose vLLM and vLLM Ascend PD accuracy failures using top-down feature isolation or bottom-up tensor evidence. Align completed P KV/state with D's contents and placement before each component's first consumption and verify the handoff position; cover block boundaries, speculative steps, prefix/pool hits and dirty-block reuse before attributing a cause. Supports standalone use and optional MindIE Agent tools.
+description: Diagnose vLLM and vLLM Ascend PD accuracy failures using top-down feature isolation or bottom-up tensor evidence. Align completed P KV/state with D's contents and placement before each component's first consumption and verify the handoff position; cover block boundaries, speculative steps, prefix/pool hits and dirty-block reuse before attributing a cause. PD methodology with optional specialist-skill reuse and standalone fallback.
 license: MIT
 ---
 
 # PD Disaggregation Accuracy Diagnosis
 
 Find the first divergent boundary and the mechanism that causes it. Distinguish a direct PD defect, a PD-by-feature interaction, a model path missing PD adaptation, an independent device/software-stack fault, and an invalid comparison. A lower benchmark score or a successful transfer return does not determine the category.
+
+This skill owns the PD diagnosis methodology and causal conclusion. Follow [skill-reuse.md](references/skill-reuse.md) to reuse suitable repository/host correctness, cache/attention, graph, operator or distributed-debug skills for bounded subproblems. Default to automatic capability-based reuse; `prefer-integrated` and `standalone` are optional workflow preferences. Without matching skills, continue with the bundled top-down/bottom-up procedures and probes. Bring specialist results back to the cross-node handoff evidence rather than treating a local pass as proof of PD correctness.
 
 The core PD check is whether the valid KV/state produced or retained by P is present with the right content at the positions D will actually consume, before each component's first consuming operation. This can be a model-entry boundary for a completed request-level load, or a per-layer boundary after that layer's load and required state relocation. Compare tensor dumps with block/slot tables, token positions and state metadata. Correct transfer entries or successful API returns alone do not satisfy this check.
 
@@ -21,7 +23,7 @@ Select or switch direction from the actual failure and available evidence. Both 
 
 The stages and probes in this skill are starting points, not an exhaustive list of permitted diagnostic methods. Proactively use a more discriminating method when the evidence warrants it, or broaden the investigation when the current checks cannot explain the symptom. Methods supplied by the user are examples unless the user explicitly limits the scope.
 
-- **Other skills and tools:** discover relevant skills exposed by the current MindIE Agent or other host environment, read their entrypoints, and use them for the applicable subproblem. Examples include correctness validation, graph/operator/distributed debugging, profiling, memory analysis and transport diagnostics. Select by actual capability, not an assumed installed name. Carry the same request/build identities and existing evidence into the specialized workflow, then bring its results back into the PD causal analysis. Missing skills do not prevent applying the method directly with available tools.
+- **Other skills and tools:** use the discovery, applicability and evidence-return contract in [skill-reuse.md](references/skill-reuse.md). Profiling, memory analysis and transport diagnostics can supplement the mapped specialist workflows when useful. Read only relevant capabilities; missing skills do not prevent applying the bundled method directly with available tools.
 - **Internet research:** search beyond the starting links when a failure signature, API contract or version-specific behavior needs investigation. Use official documentation, source code, maintainer issues/PRs, release notes and relevant research papers as evidence. Broader search results can provide leads; verify technical claims against primary sources and the deployed implementation. Read the supporting content, record applicability and links, and distinguish a proposed workaround from a merged fix or reproduced result. Keep private prompts, tensors, credentials and identifying logs out of public queries.
 - **Model knowledge and reasoning:** use general debugging and numerical-computing knowledge to propose additional methods, such as code/input bisection, differential or metamorphic checks, invariant checks, minimal reproductions and targeted ordering instrumentation. Treat recalled version-specific facts as unverified until checked. Label deductions and hypotheses explicitly; do not invent citations or present prior knowledge as measured evidence.
 

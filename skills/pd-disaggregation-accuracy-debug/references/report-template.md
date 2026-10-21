@@ -28,6 +28,8 @@ For bottom-up validation, record the effective eager/blocking/determinism baseli
 
 For additional methods, record the skill/tool or source used (or label a reasoning-derived hypothesis), why the method discriminates between the remaining explanations, expected outcomes, actual observations and limitations. Link specialized reports and primary sources while preserving the same request/build identities. Keep externally reported findings separate from locally reproduced evidence.
 
+Record the selected reuse mode (`auto`, `prefer-integrated` or `standalone`), relevant specialist path/revision, applicability checks, and any fallback with its reason. Separate evidence returned by a specialist from the resulting PD conclusion; missing specialist skills do not imply that the bundled method or a runtime test was executed.
+
 ## First divergent boundary
 
 | Boundary | Aligned request/token/layer/rank | Synchronization and ownership | Comparison/result | Artifact |

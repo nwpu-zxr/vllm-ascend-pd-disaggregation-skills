@@ -77,7 +77,7 @@ def main():
                     require(resolved.is_relative_to(package),
                             f"{relative}: link depends on another package")
 
-        for reference in ("official-docs.md", "runtime-integration.md"):
+        for reference in ("official-docs.md", "runtime-integration.md", "skill-reuse.md"):
             copies = {(ROOT / "skills" / name / "references" / reference).read_bytes()
                       for name in NAMES}
             require(len(copies) == 1, f"Shared reference drift: {reference}")

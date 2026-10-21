@@ -27,6 +27,10 @@ Use available tools instead of duplicating their state management. Missing optio
 
 If the host workspace requires a particular run manifest, parity workflow or managed session, follow it there. Legacy VAWS manifests and `.remote-dev` state directories are host integration details, not requirements for other consumers.
 
+## Optional specialist-skill reuse
+
+Use [skill-reuse.md](skill-reuse.md) for `auto` (default), `prefer-integrated` and `standalone` workflow preferences. Discover relevant repository or host skills, verify their actual contracts and reuse bounded capabilities while keeping PD reasoning and evidence integration in this workflow. These are natural-language choices, not new CLI flags or mandatory dependencies. Missing optional skills fall back to the methods bundled with this package; required host rules and existing service ownership still apply.
+
 ## Coexistence with other skills and workflows
 
 Discover actually loaded skills and active service controllers; catalogue entries are not automatically installed workflows. There is no selection priority or runtime lock implied by a skill name. Honor the user's selected workflow and the host's required execution rules while preserving existing service ownership.

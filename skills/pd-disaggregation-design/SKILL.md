@@ -1,12 +1,14 @@
 ---
 name: pd-disaggregation-design
-description: Design, review, implement, or refactor vLLM and vLLM Ascend PD disaggregation connectors. Assess a new KV-cache layout against a specified connector using cache spec definitions, all cache shapes, strides, sizes, storage and semantic contracts; identify compatibility gaps and adaptation options. Covers version-specific lifecycle, topology, Mooncake, NIXL and layerwise/chunkwise transfer. Supports standalone use and optional MindIE Agent tools.
+description: Design, review, implement, or refactor vLLM and vLLM Ascend PD disaggregation connectors. Assess a new KV-cache layout against a specified connector using cache spec definitions, all cache shapes, strides, sizes, storage and semantic contracts; identify compatibility gaps and adaptation options. Covers version-specific lifecycle, topology, Mooncake, NIXL and layerwise/chunkwise transfer. PD methodology with optional specialist-skill reuse and standalone fallback.
 license: MIT
 ---
 
 # PD Disaggregation Design
 
 Use the active source and runtime contracts. Historical implementations suggest checks; they do not establish current support. Honor analysis-only scope and preserve already-authorized implementation work without repeatedly requesting permission.
+
+This skill owns the PD design methodology and final compatibility verdict. Follow [skill-reuse.md](references/skill-reuse.md) to reuse suitable repository/host skills for cache implementation analysis or change validation. Default to automatic capability-based reuse; `prefer-integrated` and `standalone` are optional workflow preferences. Without matching skills, use the spec/layout, lifecycle, mapping and validation methods bundled here. A specialist's cache verdict does not establish connector compatibility.
 
 ## Identify the actual path
 
@@ -58,4 +60,4 @@ For a full numerical investigation, use `pd-disaggregation-accuracy-debug` if in
 
 ## Deliverable
 
-Provide the conclusion and exact applicability, source locations, useful timing/address examples, changes, validation and unresolved conditions. Treat legacy rules in [design-pitfalls.md](references/design-pitfalls.md) as counterexamples to overgeneralization, not a support matrix.
+Provide the conclusion and exact applicability, source locations, useful timing/address examples, changes, validation and unresolved conditions. Briefly identify reused specialist evidence or standalone fallback where relevant. Treat legacy rules in [design-pitfalls.md](references/design-pitfalls.md) as counterexamples to overgeneralization, not a support matrix.

@@ -6,6 +6,8 @@
 
 本仓库包含三个可独立使用的英文 skill。它们指导 Agent 根据模型、源码、运行环境和传输证据完成具体工程任务，不提供适用于所有模型的启动命令或固定兼容性清单。
 
+三个 skills 主要提供 PD 方法论：明确问题、选择证据并形成有适用范围的结论。具体专项分析和执行可以复用仓库或宿主中的合适 skills；没有这些 skills 时，仍可使用包内流程和方法继续。
+
 | Skill | 使用场景 | 交付内容 |
 |---|---|---|
 | [pd-disaggregation-design](skills/pd-disaggregation-design/SKILL.md) | Connector 设计与审查；新 KV-cache spec/layout 适配评估 | 语义与实现分析、逐组件兼容性结论、适配缺口和验证计划 |
@@ -48,6 +50,18 @@ cd vllm-ascend-pd-disaggregation-skills
 ## 运行环境与 MindIE Agent 集成
 
 独立使用不依赖 VAWS 安装、私人 session 记录或固定工作区路径。在已有工作区内使用时，遵循该环境的隔离、代码一致性、服务生命周期和运行记录规范。MindIE Agent 的 remote-dev、知识查询、诊断及协调工具属于可选适配，按当前环境实际提供的能力使用。
+
+可以用自然语言指定复用偏好，无需新增配置文件或命令行参数：
+
+| 偏好 | 行为 |
+|---|---|
+| `auto`（默认） | 核对适用条件后复用可用的专项 skill；没有合适 skill 时使用包内方法 |
+| `prefer-integrated` | 优先复用合适的仓库/MindIE skills；缺少可选能力时说明原因，并按包内方法继续 |
+| `standalone` | 使用包内方法论和可用工具，不依赖可选专项 skills |
+
+例如：“使用 `pd-disaggregation-accuracy-debug`，采用 `prefer-integrated` 模式；复用可用的正确性验证、graph 和算子 skills，未覆盖的步骤按包内方法处理。”用户明确要求使用的特定系统和宿主强制规则，在所有模式下都仍然有效。
+
+[能力映射与复用约定](skills/pd-disaggregation-design/references/skill-reuse.md) 覆盖 cache/layout 分析、部署、正确性对照和数值/分布式诊断，每个 skill 包内均有独立副本。选择时核对实际框架、版本和输入约定，不仅按名称匹配；跨步骤保持相同请求、构建和证据标识，将专项结果汇总到 PD 结论，局部检查通过不代表 PD 端到端正确。
 
 与其他部署 skill 同时使用时，遵循“一个部署计划、每个服务一个生命周期管理者”。已有工作流继续管理其服务，本仓库提供 PD 配置审查、诊断和缺失的验收证据，不另起一套重复部署。新部署选择适配的宿主管理工具或独立执行路径；单独记录 proxy 归属，启动结果不确定时先核实再重试，回滚时保留复用服务。详见 [工作流协作规则](skills/pd-disaggregation-serving/references/workflow-coordination.md)。这些规则用于指导 Agent，实际并发互斥仍依赖宿主锁、资源租约和管理工具的行为。
 

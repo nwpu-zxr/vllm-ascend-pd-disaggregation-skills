@@ -8,6 +8,8 @@ license: MIT
 
 Deliver reproducible P/D/proxy configuration and verified results. For script-only requests, prepare and statically validate scripts. For an authorized launch, continue through health checks and a real PD request. Do not reuse historical addresses, device counts, ports or model paths as defaults.
 
+This skill owns the PD deployment methodology and acceptance criteria. Follow [skill-reuse.md](references/skill-reuse.md) to reuse suitable repository/host serving skills for bounded execution steps. Default to automatic capability-based reuse; `prefer-integrated` and `standalone` are optional workflow preferences. Without matching skills, use the bundled launch and acceptance methods with available tools. In every mode, retain one deployment plan and one lifecycle controller per service.
+
 ## Resolve the target and execution context
 
 Use current inventory, existing scripts and user instructions to determine endpoints, model/checkpoint, hardware, P/D devices, parallel topology, connector, proxy and source paths. Ask only for necessary information that cannot be recovered from available context.
