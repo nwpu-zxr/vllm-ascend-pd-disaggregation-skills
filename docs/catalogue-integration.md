@@ -20,6 +20,14 @@ Source repository: [nwpu-zxr/vllm-ascend-pd-disaggregation-skills](https://githu
 
 Do not guess a repository owner, fabricate a commit SHA or retain a stale hash after editing. Updating a shared source revision affects every catalogue entry that references it.
 
+## Coexistence with existing serving entries
+
+An entry such as `vllm-ascend-pd-serving` may overlap with this collection. Catalogue membership does not establish that it is installed, and registration does not give either skill precedence. Describe the actual integration as one selected deployment plan with one lifecycle controller per service, not two independent launch workflows.
+
+Follow [workflow coordination](../skills/pd-disaggregation-serving/references/workflow-coordination.md): retain existing controllers and state, contribute scoped PD review or missing evidence, and use a standalone path for a new deployment only when appropriate to the host's requirements. Read the installed candidate's references to resolve Session Group, proxy and rollback boundaries. Do not claim transparent compatibility with every version or that the Markdown rules enforce process exclusion.
+
+The coordination reference includes manual review scenarios for overlapping entrypoints, reused services, partial failure, uncertain launches, routing loops and shared acceptance evidence. Package checks validate distribution and links; they do not constitute a live MindIE deployment test.
+
 ## Suggested summaries
 
 | Skill | English | Chinese |

@@ -49,6 +49,8 @@ cd vllm-ascend-pd-disaggregation-skills
 
 独立使用不依赖 VAWS 安装、私人 session 记录或固定工作区路径。在已有工作区内使用时，遵循该环境的隔离、代码一致性、服务生命周期和运行记录规范。MindIE Agent 的 remote-dev、知识查询、诊断及协调工具属于可选适配，按当前环境实际提供的能力使用。
 
+与其他部署 skill 同时使用时，遵循“一个部署计划、每个服务一个生命周期管理者”。已有工作流继续管理其服务，本仓库提供 PD 配置审查、诊断和缺失的验收证据，不另起一套重复部署。新部署选择适配的宿主管理工具或独立执行路径；单独记录 proxy 归属，启动结果不确定时先核实再重试，回滚时保留复用服务。详见 [工作流协作规则](skills/pd-disaggregation-serving/references/workflow-coordination.md)。这些规则用于指导 Agent，实际并发互斥仍依赖宿主锁、资源租约和管理工具的行为。
+
 参见 [目录集成说明](docs/catalogue-integration.md)，了解如何将已发布版本登记到 Awesome MindIE Skills。该目录索引上游 skill 定义，本仓库保存实际源码；提供兼容说明不代表已被目录收录。
 
 ## 输出审计工具

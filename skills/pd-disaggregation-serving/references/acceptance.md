@@ -2,6 +2,8 @@
 
 Select evidence levels appropriate to the request. Do not expand a script-only request into a device experiment.
 
+For coexisting skills or reused services, verify the ownership decisions in [workflow-coordination.md](workflow-coordination.md): one selected plan, one lifecycle controller per P/D/proxy service, linked authoritative state, and a distinction between pre-existing services and this attempt's changes. Check uncertain launches before retrying, and retain the owning controller's rollback outcome. Reuse current acceptance evidence for the same service incarnation/configuration; collect only the missing checks without creating another deployment.
+
 Before starting, choose explicit per-phase readiness and request deadlines appropriate to the model and known load time. Distinguish weight loading, graph preparation, connector readiness and proxy readiness; a live PID is not a ready service. Keep retries bounded and preserve each attempt's failure. On deadline expiry, inspect the current progress and earliest error before deciding whether an extension is justified; do not silently restart or wait forever. Do not increase a transport timeout to conceal a service-readiness failure.
 
 | Level | Evidence | Does not establish |
@@ -22,4 +24,4 @@ For repeated/concurrent acceptance, distinguish cold startup, repeated runs in o
 
 Preserve the earliest failing rank, context and effective settings. Async HCCL errors can become visible at a later synchronization point. Query an available verified knowledge source for the observed signature before repeating diagnosis, but verify applicability to this version and topology. Missing knowledge is unknown, not proof of support or a reason to stop ordinary investigation.
 
-Cleanup and rollback target only this run's processes, containers and files. Verify PID and command identity instead of broad process-name killing. Keep raw logs and reproducible launch/status/stop commands. Whether services remain running follows the user's requested outcome.
+Cleanup and rollback operate through each service's owning controller and target only changes within this attempt's scope. Observe rollback already performed, preserve unaffected reused services and externally managed proxies, and restore modified services according to the recorded recovery plan. Verify PID and command identity instead of broad process-name killing. Keep raw logs and reproducible launch/status/stop commands. Whether services remain running follows the user's requested outcome.

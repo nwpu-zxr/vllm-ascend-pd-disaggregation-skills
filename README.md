@@ -47,6 +47,8 @@ Each skill includes a model-specific lookup workflow for the [official vLLM Asce
 
 Standalone use requires no VAWS installation, private session history or fixed workspace path. In an existing workspace, follow its isolation, code-parity, service lifecycle and run-record rules. MindIE Agent remote-dev, knowledge, diagnostics and coordinator tools are optional adapters discovered from the current harness.
 
+When another serving skill is available, use one deployment plan and one lifecycle controller per service. An existing workflow retains its services; these skills can supply PD configuration review, diagnosis and missing acceptance evidence without launching a second deployment. New deployments use compatible host controllers or a standalone path. Record proxy ownership separately, reconcile uncertain launches before retrying, and preserve reused services during rollback. See [workflow coordination](skills/pd-disaggregation-serving/references/workflow-coordination.md). These instructions guide the agent; actual concurrency protection depends on the host's locks/leases and controller behavior.
+
 See [catalogue integration](docs/catalogue-integration.md) for registering the published source with Awesome MindIE Skills. That catalogue indexes source definitions; it does not host this source package.
 
 ## Output audit helper

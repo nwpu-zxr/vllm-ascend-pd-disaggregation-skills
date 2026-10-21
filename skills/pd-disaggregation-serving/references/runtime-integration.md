@@ -27,6 +27,14 @@ Use available tools instead of duplicating their state management. Missing optio
 
 If the host workspace requires a particular run manifest, parity workflow or managed session, follow it there. Legacy VAWS manifests and `.remote-dev` state directories are host integration details, not requirements for other consumers.
 
+## Coexistence with other skills and workflows
+
+Discover actually loaded skills and active service controllers; catalogue entries are not automatically installed workflows. There is no selection priority or runtime lock implied by a skill name. Honor the user's selected workflow and the host's required execution rules while preserving existing service ownership.
+
+Use one deployment plan and one lifecycle controller per service. When another workflow already owns a deployment, contribute scoped design/configuration/diagnostic evidence and perform service changes through that owner. If this skill leads, reuse compatible host controllers instead of launching a competing workflow. Keep controller run/job/session identities and authoritative state references; reconcile active or uncertain work before retrying. A referenced skill that routes back to the current workflow is a navigation loop to stop, not a reason to restart the task.
+
+Diagnostic A/B changes and restarts follow the same ownership rule. Preserve externally managed proxies and reused roles, and reuse current evidence when its build/configuration/service identity matches. Optional adapters can be replaced with a compatible standalone path before a new deployment starts; do not silently migrate existing services or bypass mandatory host prerequisites. Where shared execution needs exclusion, use actual host locks/leases or serialized ownership, not these instructions as a substitute.
+
 ## Catalogue distribution
 
 [Awesome MindIE Skills](https://github.com/mindie-agent/awesome-mindie-skills) is a catalogue, not the source home of this package. Its source revision, license, maintainer, path and SHA256 must identify the actual published source. Definition review and hardware reproduction are separate claims. Do not claim a runtime validation based on this skill's examples or historical observations.

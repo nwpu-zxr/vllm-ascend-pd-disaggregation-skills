@@ -33,8 +33,10 @@ Reuse the target revision's maintained proxy/example where appropriate. Do not r
 
 ## Optional execution adapters
 
+Apply [workflow-coordination.md](workflow-coordination.md) when a serving workflow/controller already exists or multiple skills overlap. Resolve the primary plan, per-service owners and proxy scope before selecting execution commands.
+
 Discover current tool schemas before invoking MindIE remote-dev or another companion backend. Prefer structured execution, file, job and artifact tools when available. Use the host project's authorized native mechanism otherwise; no specific MCP name is guaranteed.
 
 If an existing managed orchestrator is selected, inspect its help and requirements first: isolation/session IDs, snapshot identity, device assignment, startup order and proxy ownership. Reuse it only when the deployment meets its actual contract. Do not fabricate ready state or snapshot identity to satisfy validation.
 
-Record commands and process ownership so restart and cleanup target the exact deployment. Keep transient state outside tracked skill files and never embed endpoint credentials in a reusable package.
+Keep start/status/stop/rollback operations with the same owning controller and link its state and returned identities. Do not execute generated launch scripts in addition to a controller's launch of the same role. Record commands and process ownership so restart and cleanup target the exact deployment. Keep transient state outside tracked skill files and never embed endpoint credentials in a reusable package.
