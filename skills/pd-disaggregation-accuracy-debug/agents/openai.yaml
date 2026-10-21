@@ -1,0 +1,3 @@
+interface:
+  display_name: "PD Accuracy Diagnosis"
+  short_description: "Trace PD divergence from KV payload to its first consumption"

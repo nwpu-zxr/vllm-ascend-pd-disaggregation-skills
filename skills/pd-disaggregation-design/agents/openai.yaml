@@ -1,0 +1,3 @@
+interface:
+  display_name: "PD Disaggregation Design"
+  short_description: "Design PD connectors with topology and lifetime evidence"

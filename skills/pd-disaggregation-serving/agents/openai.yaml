@@ -1,0 +1,3 @@
+interface:
+  display_name: "PD Disaggregation Serving"
+  short_description: "Launch and verify PD services with real transfer evidence"
